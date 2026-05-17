@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:kactus2="http://kactus2.cs.tut.fi" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+	<ipxact:vendor>TUNI.COMP.CE.400</ipxact:vendor>
+	<ipxact:library>ip.sw</ipxact:library>
+	<ipxact:name>CrypterSimApp_w_TLM</ipxact:name>
+	<ipxact:version>1.0</ipxact:version>
+	<ipxact:model>
+		<ipxact:views>
+			<ipxact:view>
+				<ipxact:name>default</ipxact:name>
+				<ipxact:componentInstantiationRef>default_sw_component_instantiation</ipxact:componentInstantiationRef>
+			</ipxact:view>
+		</ipxact:views>
+		<ipxact:instantiations>
+			<ipxact:componentInstantiation>
+				<ipxact:name>default_sw_component_instantiation</ipxact:name>
+				<ipxact:defaultFileBuilder>
+					<ipxact:fileType>cppSource</ipxact:fileType>
+					<ipxact:command></ipxact:command>
+					<ipxact:flags>-L$(SYSTEMC_HOME)/lib -lsystemc  -std=c++11</ipxact:flags>
+					<ipxact:replaceDefaultFlags>false</ipxact:replaceDefaultFlags>
+				</ipxact:defaultFileBuilder>
+				<ipxact:fileSetRef>
+					<ipxact:localName>src</ipxact:localName>
+				</ipxact:fileSetRef>
+			</ipxact:componentInstantiation>
+		</ipxact:instantiations>
+	</ipxact:model>
+	<ipxact:fileSets>
+		<ipxact:fileSet>
+			<ipxact:name>src</ipxact:name>
+			<ipxact:file>
+				<ipxact:name>header.hh</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+				<ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>main.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>process.hh</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+				<ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>process1.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>process2.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>process3.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>process4.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>test_bench.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>test_bench.hh</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+				<ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>value1.cpp</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+			</ipxact:file>
+			<ipxact:file>
+				<ipxact:name>value1.hh</ipxact:name>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+				<ipxact:isIncludeFile externalDeclarations="true">true</ipxact:isIncludeFile>
+			</ipxact:file>
+			<ipxact:defaultFileBuilder>
+				<ipxact:fileType>cppSource</ipxact:fileType>
+				<ipxact:command></ipxact:command>
+				<ipxact:flags>-I$(SYSTEMC_HOME)/include</ipxact:flags>
+				<ipxact:replaceDefaultFlags>false</ipxact:replaceDefaultFlags>
+			</ipxact:defaultFileBuilder>
+		</ipxact:fileSet>
+	</ipxact:fileSets>
+	<ipxact:vendorExtensions>
+		<kactus2:version>2,8,49,0</kactus2:version>
+		<kactus2:kts_attributes>
+			<kactus2:kts_productHier>Flat</kactus2:kts_productHier>
+			<kactus2:kts_implementation>SW</kactus2:kts_implementation>
+			<kactus2:kts_firmness>Mutable</kactus2:kts_firmness>
+		</kactus2:kts_attributes>
+	</ipxact:vendorExtensions>
+</ipxact:component>
