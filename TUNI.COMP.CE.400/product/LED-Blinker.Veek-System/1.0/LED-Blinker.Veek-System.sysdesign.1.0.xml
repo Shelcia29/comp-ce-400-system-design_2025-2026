@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014" xmlns:kactus2="http://kactus2.cs.tut.fi" xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014 http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+	<ipxact:vendor>TUNI.COMP.CE.400</ipxact:vendor>
+	<ipxact:library>product</ipxact:library>
+	<ipxact:name>LED-Blinker.Veek-System.sysdesign</ipxact:name>
+	<ipxact:version>1.0</ipxact:version>
+	<ipxact:componentInstances>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>arm_cortex_a9_0</ipxact:instanceName>
+			<ipxact:componentRef vendor="TUNI.fi" library="ip.hwp.cpu" name="arm.cortex_a9" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{3a49ce0a-71bd-4107-ad43-5b3a4c23daff}</kactus2:uuid>
+				<kactus2:position x="190" y="60"/>
+				<kactus2:imported importRef="TUNI.COMP.CE.400:product:LED-Blinker.Veek-Hardware.designcfg:1.0_arm_cortex_a9_0"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>FPGAHAL_0</ipxact:instanceName>
+			<ipxact:componentRef vendor="TUNI.fi" library="ip.swp.stack" name="FPGAHAL" version="1.0"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{ebd9632a-76bb-44f0-b07a-218c4bf7c61d}</kactus2:uuid>
+				<kactus2:position x="190" y="240"/>
+				<kactus2:apiInterfacePositions>
+					<kactus2:apiInterfacePosition apiRef="HAL" x="-110" y="40"/>
+				</kactus2:apiInterfacePositions>
+				<kactus2:fileSetRef>Veek-System_FPGAHAL_0_headers</kactus2:fileSetRef>
+				<kactus2:mapping hwRef="{3a49ce0a-71bd-4107-ad43-5b3a4c23daff}"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>BlinkerHAL_0</ipxact:instanceName>
+			<ipxact:componentRef vendor="TUNI.COMP.CE.400" library="ip.swp.stack" name="BlinkerHAL" version="1.0_student"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{8166de8f-6017-402b-8873-1e4d42561b2d}</kactus2:uuid>
+				<kactus2:position x="190" y="170"/>
+				<kactus2:apiInterfacePositions>
+					<kactus2:apiInterfacePosition apiRef="APP_API" x="110" y="40"/>
+				</kactus2:apiInterfacePositions>
+				<kactus2:fileSetRef>Veek-System_BlinkerHAL_0_headers</kactus2:fileSetRef>
+				<kactus2:mapping hwRef="{3a49ce0a-71bd-4107-ad43-5b3a4c23daff}"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+		<ipxact:componentInstance>
+			<ipxact:instanceName>BlinkerApp_0</ipxact:instanceName>
+			<ipxact:componentRef vendor="TUNI.COMP.CE.400" library="ip.sw" name="BlinkerApp" version="1.0_student"/>
+			<ipxact:vendorExtensions>
+				<kactus2:uuid>{a561e6d0-dabd-47c1-9af9-379d6d29b041}</kactus2:uuid>
+				<kactus2:position x="190" y="100"/>
+				<kactus2:apiInterfacePositions>
+					<kactus2:apiInterfacePosition apiRef="HAL" x="110" y="40"/>
+				</kactus2:apiInterfacePositions>
+				<kactus2:fileSetRef>Veek-System_BlinkerApp_0_headers</kactus2:fileSetRef>
+				<kactus2:mapping hwRef="{3a49ce0a-71bd-4107-ad43-5b3a4c23daff}"/>
+			</ipxact:vendorExtensions>
+		</ipxact:componentInstance>
+	</ipxact:componentInstances>
+	<ipxact:vendorExtensions>
+		<kactus2:version>3,13,197,0</kactus2:version>
+		<kactus2:kts_attributes>
+			<kactus2:kts_implementation>SYS</kactus2:kts_implementation>
+		</kactus2:kts_attributes>
+		<kactus2:columnLayout>
+			<kactus2:column name="SW Components" contentType="2" allowedItems="2" minWidth="379" width="379" x="380"/>
+			<kactus2:column name="SW Components" contentType="2" allowedItems="2" minWidth="379" width="379" x="0"/>
+		</kactus2:columnLayout>
+		<kactus2:routes>
+			<kactus2:route kactus2:connRef="BlinkerApp_0_HAL_to_BlinkerHAL_0_APP_API" kactus2:offPage="false">
+				<kactus2:position x="300" y="140"/>
+				<kactus2:position x="320" y="140"/>
+				<kactus2:position x="320" y="210"/>
+				<kactus2:position x="300" y="210"/>
+			</kactus2:route>
+			<kactus2:route kactus2:connRef="BlinkerHAL_0_SWP_API_to_FPGAHAL_0_HAL" kactus2:offPage="false">
+				<kactus2:position x="80" y="210"/>
+				<kactus2:position x="60" y="210"/>
+				<kactus2:position x="60" y="280"/>
+				<kactus2:position x="80" y="280"/>
+			</kactus2:route>
+		</kactus2:routes>
+		<kactus2:apiConnections>
+			<kactus2:apiConnection>
+				<ipxact:name>BlinkerApp_0_HAL_to_BlinkerHAL_0_APP_API</ipxact:name>
+				<kactus2:activeApiInterface componentRef="BlinkerApp_0" apiRef="HAL"/>
+				<kactus2:activeApiInterface componentRef="BlinkerHAL_0" apiRef="APP_API"/>
+			</kactus2:apiConnection>
+			<kactus2:apiConnection>
+				<ipxact:name>BlinkerHAL_0_SWP_API_to_FPGAHAL_0_HAL</ipxact:name>
+				<kactus2:activeApiInterface componentRef="BlinkerHAL_0" apiRef="SWP_API"/>
+				<kactus2:activeApiInterface componentRef="FPGAHAL_0" apiRef="HAL"/>
+			</kactus2:apiConnection>
+		</kactus2:apiConnections>
+	</ipxact:vendorExtensions>
+</ipxact:design>
