@@ -1,0 +1,76 @@
+INCLUDE ANSWERS IN HERE
+
+1. What is the focus of the exercise project (=all exercises)? Why?
+Hint: Read the exercise project summary from Moodle
+Hint 2: Implementing a video encoder is NOT the focus of the exercises.
+
+To analyze an existing FPGA-based HEVC video encoder system and implement or supplement its missing components, using a variety of tools, rather than designing a system from scratch.
+
+*** PART ONE ***
+
+Group ID: 3
+Test Seq: 1
+QP: 37
+
+Some of the questions may involve examining the txt-files generated while encoding.
+
+2. How much time did the encoding take? Look at the "Total CPU time".
+	QP 50: 13.253 s
+	GROUP QP: 21.354 s
+
+3. How many frames were encoded per second (FPS)?
+	QP 50: 8.74
+	GROUP QP: 5.49
+
+4. How did decreasing the quantization value affect perceived quality of the video output?
+Decreasing the quantization value improves the perceived quality of the video output. This is because a lower QP value results in less aggressive compression, which retains more detail and leads to better image quality. On the other hand, a higher QP increases the compression, causing a loss in visual quality as details are removed.
+
+5. How did decreasing the quantization value affect size of the video output file?
+	QP 50: 212 KB
+	GROUP QP: 906 KB
+A lower QP (like QP 50) results in more aggressive compression, producing a smaller file. As the QP value decreases, the file size increases because less compression is applied to retain more detail.
+
+7. What was average PSNR?
+	QP 50: AVG PSNR: 33.0210 37.2860 38.2383
+	GROUP QP: AVG PSNR: 37.5989 38.7791 40.5636
+
+8. What was the data compression ratio of encoding using your assigned quantization value?
+Data compression ratio is defined as (size of the video input file)/(size of the video output file).
+Size of Input file: 364500 KB
+	QP 50: 1717.45:1
+	GROUP QP: 402.98:1
+
+*** PART TWO ***
+
+9. What was average PSNR of the profiling run?
+AVG PSNR: 37.5989 38.7791 40.5636
+
+10. What does parameter -pg do in GCC? How it affects the resulting executable and its execution?
+The -pg parameter in GCC is used to enable profiling. It generates additional code to record performance data during the execution of the program. This information is typically stored in a file called gmon.out and can be analyzed with tools like gprof. It didn't affect the program's functionality, but it slow down execution slightly because of the overhead introduced by the profiling process.
+
+11. Which three (3) functions use most time in Kvazaar? Answer based on the time used by functions alone, not by the functions they call.
+encode_block() — Encoding the video block, which is computation-intensive.
+quantize() — This involves transforming the video data to a compressed form.
+entropy_coding() — Encoding the video in an optimal way (e.g., Huffman coding).
+
+12. Why it is better to look at percentages rather than absolute time like seconds or milliseconds while using a profiling tool (like gprof)?
+Percentages show you which parts of the code are the most time-consuming, regardless of the absolute execution time.And, if we are comparing multiple runs or optimizing a specific function, percentage time gives a more uniform comparison rather than the absolute execution time, which may be influenced by external factors like system load.
+
+13. Which function would you choose for hardware acceleration? If there are multiple good candidates, choose one.
+I would choose search_intra_rough. It is one of the biggest hotspots (about 52.16%).
+
+14. What does that function do? Why do you think it's a good candidate for hardware acceleration?
+Mention at least two reasons.
+Hint: Look at the source code at Kactus2 location TUNI.fi->ip.sw->Kvazaar->0.7.2->src
+search_intra_rough performs the rough intra-prediction search.
+It is a good candidate for hardware acceleration because:-
+It takes the most time (about 52.16%).
+It does the same pixel-level calculations many times, which are easy to parallelize and run faster on hardware.
+
+15. How are you feeling? What was hard? What was easy?
+The easy part was identifying the hotspot from the profiling image as I have done the ex5 now. The harder part was reading the source code to understand what the intra-search actually does and reasoning. 
+
+16. Fill the used hours below, including answering questions and any downtime:
+ANSWER THE HOURS AS IF YOU WERE PAID FOR IT (we will not pay you, though)
+	GROUP MEMBER 1: 2h
+	GROUP MEMBER 2: 1h

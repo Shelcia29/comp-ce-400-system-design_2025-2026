@@ -1,0 +1,54 @@
+INCLUDE ANSWERS IN HERE
+
+1. What is the purpose of SystemC?
+SystemC is a C++ library used to model and simulate hardware and software systems for design, verification, and performance analysis.
+
+2. What does macro SC_MODULE do from user perspective?
+SC_MODULE defines a SystemC module, which is like a class representing a system component. It declares a module, enables threading and encapsulates logic.
+
+3. What does macro SC_CTOR do from user perspective?
+SC_CTOR is the constructor for a SystemC module. It initializes the module and registers processes.
+
+4. What is the difference between SC_THREAD, SC_METHOD, and SC_CTHREAD?
+SC_THREAD: A continuous process that runs in a loop and uses wait() to yield.
+SC_METHOD: A process that runs immediately when an event occurs.
+SC_CTHREAD: A clocked process that runs on a clock edge.
+
+5. Original model does not specify implementation for c1, c2, and v1.
+What was implementation of channels and the variable in this exercise?
+c1 (FIFO1): A FIFO channel for passing encrypted data between processes.
+c2 (FIFO2): A FIFO channel for passing decrypted data between processes.
+v1 (Shared Memory): Shared memory used to store data between processes.
+
+6. What does the file test_bench.cpp do?
+The test bench is responsible for feeding input to the DUT, checking its output, and monitoring the state of the shared memory. It ensures that the simulation runs correctly and provides feedback on the results.
+
+7. What is the purpose of the application GTKWave?
+GTKWave visualizes signal changes and timing in the simulation. It helps to debug timing issues. 
+	
+8. In this exercise, memory was merely used as an external storage. However, in practical computing
+the memory is likely used directly by CPU as in caches and DDR. Why speed of these is important?
+Because slow memory makes the CPU wait, reducing performance.
+
+9. In this exercise, we had the option of directly affecting the memory speed.
+Why this may be difficult on real platforms?
+Changing memory speed in real systems is typically only possible by swapping hardware, not by changing a line in code like in this exercise.
+
+10. What the was the final performance of your system? Answer this BEFORE the bonus section!
+About 158 nanoseconds, after applying all optimizations.
+
+11. What was hard? What was easy?
+Following the instructions was easy. 
+
+12. Fill the used hours below, including answering questions and any downtime:
+
+	GROUP MEMBER 1: 4hours
+	GROUP MEMBER 2: 4hours
+	
+***BONUS SECTION ANSWERS***
+
+13. What components did you choose? What was the price? What was the performance?
+
+14. Following setup is used for streaming 4K video:
+4K monitor <- HDMI 1.3 <- PC <- 5 Mbps internet <- Content service
+What is wrong with the setup? Hint: Search answers from articles and specifications if you do not know.

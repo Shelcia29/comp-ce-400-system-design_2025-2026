@@ -1,0 +1,181 @@
+INCLUDE ANSWERS IN HERE
+
+SOME OF THE QUESTIONS AND ANSWERS ARE FAIRLY SPECULATIVE, AS THE SYSTEM IS
+ESSENTIALLY A GREYBOX: THERE ARE DIAGRAMS, SPECIFICATIONS, AND KNOWN PRACTICES,
+BUT THE PRECISE IMPLEMENTATION IS OBSCURE.
+
+*** TRANSFER RATES ***
+
+1. Insert All Benchmarking Results Here.
+/home/student/shared_p/3/TUNI.COMP.CE.400/product/Exercise_Returns/1.0/Exercise05/before loading kernel.png
+
+/home/student/shared_p/3/TUNI.COMP.CE.400/product/Exercise_Returns/1.0/Exercise05/After loading kernel.png
+
+2. How fast were the DMA write and read measured by the application and how fast were they actually (show calculations and differences)? Give a reason for this?
+Given:
+Clock = 100 MHz
+Tcycle = 1/100 MHz = 10ns
+DMA_WRITER = 0x8200 = 33280 bytes
+DMA_READER = 0x8000 = 32768 bytes
+
+SignalTap Cycles measured:
+Read: arvalid first to last = 917 cycles
+Write: awvalid first to last = 807 cycles
+
+Write calculation:
+𝑡write = 807 * 10ns = 8.07 𝜇s
+𝑣write = 33280 bytes / 8.07 𝜇s = 4130 MB/s
+
+Read calculation:
+𝑡read = 917 * 10ns = 9.17 𝜇s
+𝑣read = 32768 bytes / 9.17 𝜇s = 3570 MB/s
+
+	WRITE ON SIGNAL TAP: 4130 MB/s
+	ON APPLICATION: 402 MB/s
+	DIFFERENCE TO APPLICATION MEASUREMENT: 4130−402=3728 MB/s (relatively 927% higher than application)
+
+	READ ON SIGNAL TAP: 3570 MB/s
+	ON APPLICATION: 362 MB/s
+	DIFFERENCE TO APPLICATION MEASUREMENT: 3570−362=3208 MB/s (relatively 886% higher than application)
+	
+	REASON:The write and read on Signal Tap are relatively faster and can transfer more data per second compared to the application. This is because, in the application, the DMA performs data transfers without awareness of the hardware’s clock speed or actual clock cycles.
+
+3. Did you mark the measurement points to the hardware designs as instructed?
+Yes, I have marked the measurement points to the HW design but not sure whether it is correct.
+
+*** MEMORY ***
+
+4. How much memory the operating system on ARM sees available? How much the ARM processor really has?
+
+	MEMORY FOR ARM: 772796 kB
+	MEMORY FOR OPERATING SYSTEM: 8091412 kB
+	
+*** MIPS ***
+
+5. What was the calculated MIPS of the FPGA and the virtual machine CPU?
+INSERT THE COMPLETE CALCULATIONS! TELL THE USED FREQUENCY OF THE CPU!
+CPU MIPS = Used cores * ( Clock frequency of a CPU / Cycles per mul )
+Parameters to collect: 1 * (2112.003 / 3) = 704.001 MIPS
+Used cores: 1 (single-threaded encode)
+Clock frequency, 𝑓CPU: 2112.003 MHz (found from VM using the command cat/proc/cpuinfo)
+Cycles per mul: 3
+
+FPGA MIPS = Number of DSPs * Clock frequency of the DSPs
+Parameters to collect from the PDFs: 224 * 287 = 64288 MIPS
+Number of DSPs 𝑁DSP: 224 (18 x 18 Multiplier)
+DSP clock frequency 𝑓DSP: 287 MHz (Independent 18 x 18 Multiplication)
+
+	FPGA MIPS: 64288 MIPS
+	VIRTUAL MACHINE CPU MIPS: 704.001 MIPS
+	
+6. What was the measured MIPS of the ARM CPU and the virtual machine CPU?
+
+	MEASURED ARM MIPS: 519.600922 MIPS
+	MEASURED VIRTUAL MACHINE CPU MIPS: 1522.368785 MIPS
+
+7. For CPUs, MIPS was measured in this exercise. Why this gives us a value differing from calculated MIPS?
+ The calculated MIPS was done based on the information given from the number of cores and their clock frequencies, and number of cycles per multiplication without taking into account the physical memory speed. On the other hand, the measured MIPS reflects real execution, which includes pipeline stalls, cache effects, OS overhead, and dynamic frequency changes. Because of these factors, the measured MIPS differs from the calculated MIPS.
+ 
+8. What is probably the most important thing that the used MIPS measurements did not take into account?
+HINT: We told you the answer in the instructions, but we are just making sure you understand.
+The MIPS measurements did not include memory access effects, they ignored the memory bottleneck and only measured register-based multiplication performance.
+
+*** SPECULATIVE FRAME RATE ***
+
+9. How much were the speculative frame rates?
+INSERT THE COMPLETE CALCULATIONS! TELL THE USED FRAME RATE!
+Virtual machine frame rate: 5.49
+ARM MIPS: 519.600922 MIPS
+Virtual machine MIPS: 1522.368785 MIPS
+FPGA MIPS: 64288 MIPS
+
+relation = ( ARM MIPS * 0.4 + FPGA MIPS * 0.6 ) / Virtual machine MIPS = 25.47
+Speculative frame rate = Virtual machine frame rate * relation = 139.75 fps
+ 
+relation = ARM MIPS / Virtual machine MIPS = 0.3413
+Speculative frame rate = Virtual machine frame rate * relation = 1.87 fps
+
+	HARDWARE ACCELERATED FPS: 139.75 fps
+	PURE SOFTWARE FPS: 1.87 fps
+
+10. Why did we assume that roughly 60% of the execution was on the FPGA rather than the ARM CPU?
+HINT: Look at the profiling results of exercise 1, or instructions of exercise 3.
+Both the profiling results from Exercise 1 and the state-machine diagram in Exercise 3 show that intra prediction—especially angular prediction—takes more than 60% of the total encoding time. Since intra prediction is the part accelerated on the FPGA, we model the system assuming that roughly 60% of the execution is transferred from the ARM CPU to the FPGA.
+	
+*** BOGOMIPS ***
+
+11. What was the BogoMIPS of the ARM CPU andthe virtual machine CPU?
+
+	ARM BOGO MIPS: 1594.16
+	VIRTUAL MACHINE BOGO MIPS: 4223.99
+	
+12. Why BogoMIPS is not so good measurement for performance? Find out if you do not know.
+It’s a kernel delay calibration, not a workload benchmark; it correlates poorly with real performance.
+	
+*** KVAZAAR ON ARM ***
+group: 3, seq: 1 beauty, QP:37
+1st encoding
+  Video size: 1920x1080 (input=1920x1080)
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+POC    0 QP 37 (I-frame)      69344 bits PSNR: 36.9717 38.7617 40.4947
+POC    1 QP 37 (I-frame)      67032 bits PSNR: 37.0306 38.7184 40.4578
+POC    0 QP 37 (I-frame)      66400 bits PSNR: 37.0961 38.7873 40.4816
+POC    1 QP 37 (I-frame)      63816 bits PSNR: 37.1620 38.8210 40.5369
+POC    0 QP 37 (I-frame)      63456 bits PSNR: 37.2219 38.7922 40.5719
+POC    1 QP 37 (I-frame)      60792 bits PSNR: 37.2742 38.8371 40.5787
+POC    0 QP 37 (I-frame)      61248 bits PSNR: 37.3407 38.8654 40.5645
+POC    1 QP 37 (I-frame)      59288 bits PSNR: 37.4155 38.8789 40.6136
+ Processed 10 frames,     656888 bits AVG PSNR: 37.1368 38.7823 40.5138
+ Total CPU time: 73.290 s.
+ Encoding time: 73.260 s.
+ Encoding wall time: 67.581 s.
+ Encoding CPU usage: 108.40%
+ FPS: 0.15
+
+2nd encoding:
+  Video size: 1920x1080 (input=1920x1080)
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+POC    0 QP 37 (I-frame)      69344 bits PSNR: 36.9717 38.7617 40.4947
+POC    1 QP 37 (I-frame)      67032 bits PSNR: 37.0306 38.7184 40.4578
+POC    0 QP 37 (I-frame)      66400 bits PSNR: 37.0961 38.7873 40.4816
+POC    1 QP 37 (I-frame)      63816 bits PSNR: 37.1620 38.8210 40.5369
+POC    0 QP 37 (I-frame)      63456 bits PSNR: 37.2219 38.7922 40.5719
+POC    1 QP 37 (I-frame)      60792 bits PSNR: 37.2742 38.8371 40.5787
+POC    0 QP 37 (I-frame)      61248 bits PSNR: 37.3407 38.8654 40.5645
+POC    1 QP 37 (I-frame)      59288 bits PSNR: 37.4155 38.8789 40.6136
+ Processed 10 frames,     656888 bits AVG PSNR: 37.1368 38.7823 40.5138
+ Total CPU time: 83.780 s.
+ Encoding time: 83.750 s.
+ Encoding wall time: 76.407 s.
+ Encoding CPU usage: 109.61%
+ FPS: 0.13
+	
+13. What was the processor utilization percentage and the memory usage of Kvazaar?
+
+	PROCESSOR UTILIZATION: 55%
+	MEMORY USAGE: 5%
+
+14. How Kvazaar performed on the ARM CPU in comparison to work station? Do the profiling pictures look similar?
+HINT: Compare the FPS to earlier exercises, since the CPU times are not comparable because of the frame limit.
+Workstation FPS = VM FPS = 5.49
+
+	NON-PROFILING FPS: 0.15
+	DIFFERENCE TO WORKSTATION: (NON-PROFILING FPS / WORKSTATION FPS) = 0.15 / 5.49 = 0.027
+	PROFILING FPS: 0.13
+	ANALYSIS ON PICTURES: Both images represent the same function-call profile of Kvazaar, but differ slightly in numerical timing values, block ordering, arrow routing, and layout because they are from two different profiling runs or two different renderings of the same data structure. They share same top-level functions (e.g., main, kvazaar_encode, encode_state_worker_encode_lcu, etc.), similar hierarchical structures of function calls. However, they differ in proportion values (small changes in percentages).
+
+15. How Kvazaar performed in comparison to the speculated software frame rate? What could be a reason for the difference?
+
+	NON-PROFILING FPS: 0.15
+	SPECULATED PURE SOFTWARE FPS: 1.87
+	REASON: Performance ratio is approx 0.08, this means the actual encoding on the ARM CPU is much slower than we had speculated. Memory bandwidth, lack of SIMD/hardware optimizations, and high-resolution processing contribute to the much lower observed frame rate.
+
+16. What was hard? What was easy?
+It was easy to follow the instruction and take the readings, but answering the questions and calculation part was difficult for me. 
+
+17. Fill the used hours below, including answering questions and any downtime:
+
+	GROUP MEMBER 1: 9hrs
+	GROUP MEMBER 2:

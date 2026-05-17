@@ -1,0 +1,141 @@
+percentage for search_intra_rough function: 57.98% = 0.5798
+percentage of time used in the rest of the encoder combined: 1-0.5798 = 0.4202
+FPS when running Kvazaar on ARM without gprof: 0.15
+K16 131.30
+K6 206.24
+K9 264.11
+
+SW: delay_c: 1
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 1.960 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :       0.00 seconds                 #
+# FPS                    :    4207.37                         #
+# Intra rough search     :       0.00 %                       #
+# Rest of the encoder    :       0.00 %                       #
+###############################################################
+
+SW: delay_c: 24700
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 1.964 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :      13.16 seconds                 #
+# FPS                    :       0.15                         #
+# Intra rough search     :       0.00 %                       #
+# Rest of the encoder    :       0.00 %                       #
+###############################################################
+
+HW:
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 12.378 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :       5.63 seconds                 #
+# FPS                    :       0.36                         #
+# Config data            :          0 Writes          0 Bytes #
+# Unfilt1 data           :          0 Writes          0 Bytes #
+# Unfilt2 data           :          0 Writes          0 Bytes #
+# Orig data              :          0 Writes          0 Bytes #
+# Lambda                 :          0 Writes          0 Bytes #
+# Results                :          0 Reads           0 Bytes #
+# Transfers to/from HW   :       0.00 %                       #
+# Intra rough search HW  :       0.00 %                       #
+# Rest of the encoder    :       0.00 %                       #
+###############################################################
+
+HW with data transfers:
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 12.454 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :       5.63 seconds                 #
+# FPS                    :       0.36                         #
+# Config data            :      57604 Writes     691248 Bytes #
+# Unfilt1 data           :      57604 Writes    1123524 Bytes #
+# Unfilt2 data           :      57604 Writes    1123524 Bytes #
+# Orig data              :       1020 Writes    4177920 Bytes #
+# Lambda                 :          1 Writes          4 Bytes #
+# Results                :      57604 Reads      230416 Bytes #
+# Transfers to/from HW   :       0.00 %                       #
+# Intra rough search HW  :       0.00 %                       #
+# Rest of the encoder    :       0.00 %                       #
+###############################################################
+
+HW with profiling:
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 12.531 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :       5.63 seconds                 #
+# FPS                    :       0.36                         #
+# Config data            :      57604 Writes     691248 Bytes #
+# Unfilt1 data           :      57604 Writes    1123524 Bytes #
+# Unfilt2 data           :      57604 Writes    1123524 Bytes #
+# Orig data              :       1020 Writes    4177920 Bytes #
+# Lambda                 :          1 Writes          4 Bytes #
+# Results                :      57604 Reads      230416 Bytes #
+# Transfers to/from HW   :       3.61 %                       #
+# Intra rough search HW  :       0.58 %                       #
+# Rest of the encoder    :       0.42 %                       #
+###############################################################
+
+SW with profiling:
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 1.990 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :      13.16 seconds                 #
+# FPS                    :       0.15                         #
+# Intra rough search     :       0.58 %                       #
+# Rest of the encoder    :       0.42 %                       #
+###############################################################
+
+(With TA feedback code changed)
+HW with profiling:
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 12.590 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :       0.08 seconds                 #
+# FPS                    :      25.10                         #
+# Config data            :      57604 Writes     691248 Bytes #
+# Unfilt1 data           :      57604 Writes    1123524 Bytes #
+# Unfilt2 data           :      57604 Writes    1123524 Bytes #
+# Orig data              :       1020 Writes    4177920 Bytes #
+# Lambda                 :          1 Writes          4 Bytes #
+# Results                :      57604 Reads      230416 Bytes #
+# Transfers to/from HW   :       2.20 %                       #
+# Intra rough search HW  :       3.35 %                       #
+# Rest of the encoder    :      94.45 %                       #
+###############################################################
+
+SW with profiling:
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+ Processed 2 frames,     145512 bits AVG PSNR: 36.9277 38.6805 40.4190
+ Total CPU time: 1.988 s.
+
+####################### SIMULATION DATA #######################
+# Simulation time        :       0.18 seconds                 #
+# FPS                    :      11.17                         #
+# Intra rough search     :      57.98 %                       #
+# Rest of the encoder    :      42.02 %                       #
+###############################################################
+
+

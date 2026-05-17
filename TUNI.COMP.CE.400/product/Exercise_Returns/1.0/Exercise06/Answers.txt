@@ -1,0 +1,61 @@
+INCLUDE ANSWERS IN HERE
+
+1. Did you get similar results simulating Kvazaar on ARM? What was the simulated FPS for Kvazaar on ARM?
+When delay_c was set to 1, I didn't get similar results. However, changing delay_c to 24700 resulted in achieving the same FPS as when running Kvazaar on ARM without gprof (0.15). The simulated FPS for Kvazaar on ARM when (delay_c=1) was 4207.37.
+
+2. What were your values for delay_c, search_intra_rough_percentage_c, rest_percentage_c?
+delay_c = 24700;
+search_intra_rough_percentage_c = 0.5798;
+rest_percentage_c = 0.4202;
+
+3. What was the simulated FPS of the HW-accelerated version?
+0.36 FPS
+
+4. How was the computation time/delay added to the simulation on both ARM simulation and HW-accelerated simulation? What function/s, variable/s, and calculations are used?
+Delays are added using delay_ns() function in sc_kvazaar.c.
+oIntra rough search delay: search_intra_rough_delay() adds delay based on width, delay_c, and search_intra_rough_percentage_c.
+oRest of the encoder delay: search_delay() adds delay based on cu_width, delay_c, and rest_percentage_c.
+These delays simulate processing times for each part of the encoder.
+
+5. Do you think the computation time/delay is calculated accurately enough?
+The calculations are based on profiling data (from gprof), but might not be 100% accurate in real-world hardware due to factors like unaccounted bottlenecks.
+		
+6. How do we know the improvement we got with the HW accelerator is correct?
+The HW accelerator improves performance, shown by an increase in FPS (from 0.15 to 0.36). However, real-world accuracy needs testing on actual hardware, as simulation doesn’t capture all hardware-specific delays and bottlenecks.
+
+7. How many data transfers happened and how much data was sent and read while simulating the HW-accelerated version?
+Total Writes: 173,833 writes
+Total Bytes Sent: 7,116,220 byte
+Total Reads: 57,604 reads
+Total Bytes Read: 230,416 bytes
+
+8. What percentages did you get for search_intra_rough/(HW-accelerator and transfers) and for the rest of the encoder, simulating Kvazaar on ARM and simulating the HW-accelerated version?
+From the HW simulation output:-
+# Transfers to/from HW   :       2.20 %                      
+# Intra rough search HW  :       3.35 % 
+# search_intra_rough/(HW accelerator and transfers): 2.20% + 3.35% = 5.55%          
+# Rest of the encoder    :      94.45 %  
+From the SW simulation output:-
+# Intra rough search     :      57.98 %                       
+# Rest of the encoder    :      42.02 %  
+
+9. What does using wait() in delay_ns() cause?
+Using wait() in delay_ns() makes the simulation timed, so delays consume simulation time, making the encoding time longer. Without it, the simulation is untimed and runs faster, i.e., the encoding time was shorter.
+
+10. By looking at the two different waveforms, what kind of problems not using wait() causes?
+I can see signal overlaps and fast switching in the waveform when not using wait(). Using wait() correctly spaces out signal transitions, ensuring accurate timing and proper simulation behavior.
+
+11. What were your values for ARM_USED_CORES, arm_overclock_mhz_c, NUMBER_OF_ACCS and FPGA_FREQ_MHZ that achieved full HD real time encoding?
+FPS                    :      25.10
+ARM_USED_CORES = 16
+arm_overclock_mhz_c = 4250
+NUMBER_OF_ACCS = 16
+FPGA_FREQ_MHZ = 150
+
+12. What was hard? What was easy?
+The exercise was easy to follow, with clear instructions. The only difficult part was regenerating the makefile every time and adjusting the values to achieve the required FPS.
+
+13. Fill the used hours below, including answering questions and any downtime:
+
+	GROUP MEMBER 1: 6hrs
+	GROUP MEMBER 2:

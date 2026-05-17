@@ -1,0 +1,21 @@
+INCLUDE ANSWERS IN HERE
+
+1. What was your frame rate when running Kvazaar with the IP accelerator? 
+FPS: 0.29
+
+2. In exercise 5 (Q9- 139.75 fps), you made some prediction about accelerated frame rate. It probably did not match the results of this exercise. Why?
+I guess the prediction in Exercise 5 did not match because in Exercise 5 real hardware bottlenecks, such as memory bandwidth limitations and DMA delays, were ignored.
+
+3. On the other hand, the estimation done in exercise 6 (Q3- 0.36 FPS)was probably much closer. Why?
+Yes, it is closer to the FPS from Exercise 6 because the simulation in Exercise 6 used realistic delays based on profiling data and modeled the actual ARM + FPGA timing.
+
+4. What problem does running the camera user application in continuous mode seem to cause in the captured video?
+HINT: The watermark is not caused by the continuous mode.
+The captured video played very fast. I guess there is a timing issue caused by the continuous capture mode. 
+
+5. What was hard? What was easy?
+Creating the components was time-consuming. The port-mapping part and setting constant for the camera trigger were very simple, but still difficult for me to do without TA help. I also had issues with corrupted files on my SD card. However, with the help of the TAs I was able to complete the exercise. At one point I actually skipped this exercise and moved on to Exercise 8.
+
+6. How many hours did the exercise take per person, including answering questions and any downtime?
+   GROUP MEMBER 1: 9hrs
+   GROUP MEMBER 2:

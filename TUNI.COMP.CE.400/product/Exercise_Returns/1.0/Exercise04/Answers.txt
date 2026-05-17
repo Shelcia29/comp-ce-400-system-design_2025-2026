@@ -1,0 +1,41 @@
+INCLUDE ANSWERS IN HERE
+
+1. Obviously, the blinker application of the exercise is implementable with hardware.
+What are the pros and cons of implementing it with hardware? Mention at least two pros and one con.
+Pros:
+Speed: Hardware implementation can achieve faster response times compared to software, especially for simple tasks like controlling LEDs based on button presses.
+Efficiency: Once designed and implemented, hardware-based solutions are often more power-efficient, as they are specialized for specific tasks like controlling LEDs or reading buttons.
+
+Con:
+Flexibility: Hardware solutions are less flexible than software implementations. If the functionality needs to be changed, it may require re-designing the hardware, which is more time-consuming and expensive compared to modifying software.
+
+2. Which board did you use, Cyclone V SoC Development Kit or Cyclone V Arrow SoCkit? Are the LEDs active low or high? When you press a button, does it produce one or zero?
+Board Used: Cyclone V SoC Development Kit.
+LEDs: Active low (LEDs turn on when the signal is low).
+Button Output: Pressing a button produces zero (0).
+
+3. You had to generate addresses for components in Qsys. Why?
+Addresses are needed so that the software can access hardware components like LEDs and buttons in memory. These addresses map the hardware to the system’s memory.
+
+4. As you saw in the sources codes and the system designs in Kactus2,
+the application is separated from hardware with a HAL component. Why?
+The HAL separates the software from the hardware, making the system easier to maintain and modify. It abstracts the low-level hardware details from the application.
+
+5. The HAL layer maps a physical memory region to virtual memory before using it.
+Why it cannot use physical memory directly?
+Modern systems use virtual memory for security and management. The HAL maps physical memory to virtual memory so the software can safely access hardware without directly interacting with physical memory.
+
+6. When you tried to execute the second build of the application on PC, it failed. Why? Mention at least two reasons.
+Wrong architecture: The application may have been compiled for a different architecture.
+Missing dependencies: The application might rely on hardware-specific features not available on the PC
+
+7. Memory and connections were used for communication between hardware and software. How?
+Memory-mapped I/O allows the software to read and write values to specific memory addresses connected to hardware components (like LEDs and buttons).
+
+8. What was hard? What was easy?
+Running on board was hard whereas setting up Qsys and memory mapping.
+
+9. Fill the used hours below, including answering questions and any downtime:
+
+	GROUP MEMBER 1: 6hrs
+	GROUP MEMBER 2:

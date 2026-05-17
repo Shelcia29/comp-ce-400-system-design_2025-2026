@@ -1,0 +1,33 @@
+INCLUDE ANSWERS IN HERE
+
+1. What is the most significant change in the profiling picture compared to the previous exercises?
+Comparing all three profiling images, I notice that the image from ex8 shows slight increases and decreases in the percentages of many functions. The most significant change I see is that the function kvz_quantize_residual_generic has a huge increase, while all the search functions show a decrease.
+
+2. Fill the below table with performance measurements, using the parameters of the corresponding row.
+
+# RESOLUTION   THREADS   QP   LATENCY (ms)   FPS
+##################################################
+# 800x480      2         24   4940           1.4        
+# 800x480      1         24   7670           1.8
+# 800x480      2         37   4470           3.1
+# 800x480      1         37   7620           1.9
+# 400x240      2         24   1530	     10.0
+# 400x240      1         24   2190	     6.7
+# 400x240      2         37   1290	     12.0
+# 400x240      1         37   1900	     7.7
+##################################################
+
+3. Which parameters of the above table have the most significant impact on the performance of the system?
+Resolution has the most significant impact on the performance of the system.
+   
+4. Did you complete the bonus task? If you did, what is the significant change in quality of the video?
+   Missing watermark is not the answer.
+No I haven't done the bonus task.
+
+5. What was hard? What was easy?
+Initially, I had some issues with my profiling image, which I guess were due to the board. Then I experienced problems while streaming the video because sometimes the Lenovo USB device would automatically disconnect from the VM. Overall, working on this exercise was fun.
+
+6. Fill the used hours below, including answering questions and any downtime:
+
+    GROUP MEMBER 1: 4 hrs
+    GROUP MEMBER 2:

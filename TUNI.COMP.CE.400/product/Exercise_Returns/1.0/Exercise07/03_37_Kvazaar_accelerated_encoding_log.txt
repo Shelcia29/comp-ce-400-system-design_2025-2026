@@ -1,0 +1,19 @@
+--owf=auto value set to 0.
+Input: ./mBeauty_1920x1080_120fps_420_8bit_YUV.yuv, output: ./acc_output_QP37.265
+  Video size: 1920x1080 (input=1920x1080)
+POC    0 QP 37 (I-frame)      74552 bits PSNR: 36.9145 38.6755 40.4022
+POC    1 QP 37 (I-frame)      70960 bits PSNR: 36.9410 38.6856 40.4359
+POC    0 QP 37 (I-frame)      69344 bits PSNR: 36.9717 38.7617 40.4947
+POC    1 QP 37 (I-frame)      67032 bits PSNR: 37.0306 38.7184 40.4578
+POC    0 QP 37 (I-frame)      66400 bits PSNR: 37.0961 38.7873 40.4816
+POC    1 QP 37 (I-frame)      63816 bits PSNR: 37.1620 38.8210 40.5369
+POC    0 QP 37 (I-frame)      63456 bits PSNR: 37.2219 38.7922 40.5719
+POC    1 QP 37 (I-frame)      60792 bits PSNR: 37.2742 38.8371 40.5787
+POC    0 QP 37 (I-frame)      61248 bits PSNR: 37.3407 38.8654 40.5645
+POC    1 QP 37 (I-frame)      59288 bits PSNR: 37.4155 38.8789 40.6136
+ Processed 10 frames,     656888 bits AVG PSNR: 37.1368 38.7823 40.5138
+ Total CPU time: 34.040 s.
+ Encoding time: 34.000 s.
+ Encoding wall time: 34.503 s.
+ Encoding CPU usage: 98.54%
+ FPS: 0.29
